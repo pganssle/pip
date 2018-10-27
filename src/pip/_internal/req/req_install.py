@@ -586,7 +586,7 @@ class InstallRequirement(object):
                 'Running setup.py (path:%s) egg_info for package from %s',
                 self.setup_py, self.link,
             )
-        script = SETUPTOOLS_SHIM % self.setup_py
+        script = SETUPTOOLS_SHIM.format(self.setup_py)
         base_cmd = [sys.executable, '-c', script]
         if self.isolated:
             base_cmd += ["--no-user-cfg"]
@@ -748,7 +748,7 @@ class InstallRequirement(object):
                     [
                         sys.executable,
                         '-c',
-                        SETUPTOOLS_SHIM % self.setup_py
+                        SETUPTOOLS_SHIM.format(self.setup_py)
                     ] +
                     list(global_options) +
                     ['develop', '--no-deps'] +
@@ -993,7 +993,7 @@ class InstallRequirement(object):
         # type: (...) -> List[str]
         install_args = [sys.executable, "-u"]
         install_args.append('-c')
-        install_args.append(SETUPTOOLS_SHIM % self.setup_py)
+        install_args.append(SETUPTOOLS_SHIM.format(self.setup_py))
         install_args += list(global_options) + \
             ['install', '--record', record_filename]
         install_args += ['--single-version-externally-managed']
